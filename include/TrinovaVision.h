@@ -1,6 +1,7 @@
 #pragma once
 #include "VisionTypes.h"
 #include "IVisionDriver.h"
+#include "MockVisionDriver.h"
 
 class TrinovaVision {
 public:
@@ -13,6 +14,7 @@ public:
     void setConfidence(uint8_t threshold);
     TrinovaError lastError();
     bool reset();
+    void setMockScenario(MockScenario scenario);
 
 private:
     IVisionDriver* _driver;

@@ -113,3 +113,8 @@ void TrinovaVision::filterByConfidence(VisionResult &result) {
     result.count = kept;
     result.detected = (kept > 0);
 }
+void TrinovaVision::setMockScenario(MockScenario scenario) {
+    if (_mode == VisionMode::Mock && _driver) {
+        static_cast<MockVisionDriver*>(_driver)->setScenario(scenario);
+    }
+} 

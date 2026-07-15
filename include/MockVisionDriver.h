@@ -31,4 +31,4 @@ private:
     void fillNoDetection(VisionResult &r);
     void fillMultipleObjects(VisionResult &r);
     void fillLowConfidence(VisionResult &r);
-};
+};  

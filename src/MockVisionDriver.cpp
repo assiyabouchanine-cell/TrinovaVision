@@ -111,17 +111,26 @@ void MockVisionDriver::fillMultipleObjects(VisionResult &r) {
     r.objects[0].classId = 0;
     strncpy(r.objects[0].label, "person", sizeof(r.objects[0].label));
     r.objects[0].confidence = 90;
-    r.objects[0].x = 40; r.objects[0].y = 60; r.objects[0].width = 30; r.objects[0].height = 70;
+    r.objects[0].x = 40; 
+    r.objects[0].y = 60;
+     r.objects[0].width = 30; 
+     r.objects[0].height = 70;
 
     r.objects[1].classId = 1;
     strncpy(r.objects[1].label, "bottle", sizeof(r.objects[1].label));
     r.objects[1].confidence = 75;
-    r.objects[1].x = 120; r.objects[1].y = 100; r.objects[1].width = 15; r.objects[1].height = 40;
+    r.objects[1].x = 120;
+     r.objects[1].y = 100; 
+     r.objects[1].width = 15;
+      r.objects[1].height = 40;
 
     r.objects[2].classId = 2;
     strncpy(r.objects[2].label, "chair", sizeof(r.objects[2].label));
     r.objects[2].confidence = 60;
-    r.objects[2].x = 200; r.objects[2].y = 80; r.objects[2].width = 50; r.objects[2].height = 60;
+    r.objects[2].x = 200;
+     r.objects[2].y = 80; 
+     r.objects[2].width = 50; 
+     r.objects[2].height = 60;
 }
 
 void MockVisionDriver::fillLowConfidence(VisionResult &r) {
@@ -130,5 +139,8 @@ void MockVisionDriver::fillLowConfidence(VisionResult &r) {
     r.objects[0].classId = 3;
     strncpy(r.objects[0].label, "unknown", sizeof(r.objects[0].label));
     r.objects[0].confidence = 40;
-    r.objects[0].x = 10; r.objects[0].y = 10; r.objects[0].width = 20; r.objects[0].height = 20;
+    r.objects[0].x = 10; 
+    r.objects[0].y = 10; 
+    r.objects[0].width = 20; 
+    r.objects[0].height = 20;
 }
