@@ -29,9 +29,14 @@ bool TrinovaVision::begin(VisionMode mode) {
             _driver = new MockVisionDriver();
             break;
 
+        //case VisionMode::I2C:
+          //  _lastError = TrinovaError::NotInitialized;
+           // return false;
+           
+
         case VisionMode::I2C:
-            _lastError = TrinovaError::NotInitialized;
-            return false;
+            _driver = new SscmaI2CDriver();
+            break;   
 
         case VisionMode::UART:
             _lastError = TrinovaError::NotInitialized;

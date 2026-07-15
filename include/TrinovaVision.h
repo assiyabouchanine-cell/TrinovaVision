@@ -2,6 +2,7 @@
 #include "VisionTypes.h"
 #include "IVisionDriver.h"
 #include "MockVisionDriver.h"
+#include "SscmaI2CDriver.h"
 
 class TrinovaVision {
 public:
