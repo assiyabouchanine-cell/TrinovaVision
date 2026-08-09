@@ -43,10 +43,25 @@ bool TrinovaVision::begin(VisionMode mode) {
             return false;
 #endif
 
+        //case VisionMode::UART:
+           // _lastError = TrinovaError::NotInitialized;
+            //return false;
+   
         case VisionMode::UART:
-            _lastError = TrinovaError::NotInitialized;
-            return false;
-    }
+#ifdef ARDUINO
+    _driver = new SscmaUartDriver();
+    break;
+#else
+    _lastError = TrinovaError::NotInitialized;
+    return false;
+#endif
+   
+   
+   
+   
+   
+   
+        }
 
     bool ok = _driver->begin();
     _lastError = ok ? TrinovaError::None : TrinovaError::NotInitialized;

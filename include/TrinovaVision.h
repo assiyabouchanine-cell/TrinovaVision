@@ -4,6 +4,7 @@
 #include "MockVisionDriver.h"
 #ifdef ARDUINO
 #include "SscmaI2CDriver.h"
+#include "SscmaUartDriver.h"
 #endif
 class TrinovaVision {
 public:
