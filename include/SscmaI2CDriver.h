@@ -1,5 +1,6 @@
 #pragma once
 #include "IVisionDriver.h"
+#include "VisionResultConverter.h"
 #include <Seeed_Arduino_SSCMA.h>
 
 class SscmaI2CDriver : public IVisionDriver {
@@ -14,6 +15,4 @@ public:
 private:
     SSCMA _ai;
     bool _ready;
-
-    void convertToVisionResult(VisionResult &result);
 };

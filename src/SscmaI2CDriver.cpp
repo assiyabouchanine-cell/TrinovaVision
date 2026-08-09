@@ -43,29 +43,7 @@ bool SscmaI2CDriver::read(VisionResult &result) {
     result.connected = true;
     result.success = true;
 
-    convertToVisionResult(result);
+    VisionResultConverter::convert(_ai, result);
 
     return true;
-}
-
-void SscmaI2CDriver::convertToVisionResult(VisionResult &result) {
-    uint8_t n = _ai.boxes().size();
-    if (n > TRINOVA_MAX_OBJECTS) {
-        n = TRINOVA_MAX_OBJECTS;
-    }
-
-    result.count = n;
-    result.detected = (n > 0);
-
-    for (uint8_t i = 0; i < n; i++) {
-        result.objects[i].classId = _ai.boxes()[i].target;
-        result.objects[i].confidence = _ai.boxes()[i].score;
-        result.objects[i].x = _ai.boxes()[i].x;
-        result.objects[i].y = _ai.boxes()[i].y;
-        result.objects[i].width = _ai.boxes()[i].w;
-        result.objects[i].height = _ai.boxes()[i].h;
-
-        snprintf(result.objects[i].label, sizeof(result.objects[i].label),
-                 "class_%d", result.objects[i].classId);
-    }
 }

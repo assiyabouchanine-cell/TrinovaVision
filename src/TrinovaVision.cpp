@@ -32,11 +32,16 @@ bool TrinovaVision::begin(VisionMode mode) {
         //case VisionMode::I2C:
           //  _lastError = TrinovaError::NotInitialized;
            // return false;
-           
+
 
         case VisionMode::I2C:
+#ifdef ARDUINO
             _driver = new SscmaI2CDriver();
-            break;   
+            break;
+#else
+            _lastError = TrinovaError::NotInitialized;
+            return false;
+#endif
 
         case VisionMode::UART:
             _lastError = TrinovaError::NotInitialized;
@@ -118,8 +123,16 @@ void TrinovaVision::filterByConfidence(VisionResult &result) {
     result.count = kept;
     result.detected = (kept > 0);
 }
+
 void TrinovaVision::setMockScenario(MockScenario scenario) {
     if (_mode == VisionMode::Mock && _driver) {
         static_cast<MockVisionDriver*>(_driver)->setScenario(scenario);
     }
-} 
+}
+
+VisionStats TrinovaVision::getStats() {
+    VisionStats stats;
+    stats.totalReads = _totalReads;
+    stats.consecutiveErrors = _consecutiveErrors;
+    return stats;
+}

@@ -69,6 +69,12 @@ bool MockVisionDriver::read(VisionResult &result) {
             result.connected = true;
             fillLowConfidence(result);
             break;
+        
+
+        case MockScenario::Overflow:
+            result.connected = true;
+            fillOverflow(result);
+            break;
     }
 
     result.success = true;
@@ -143,4 +149,20 @@ void MockVisionDriver::fillLowConfidence(VisionResult &r) {
     r.objects[0].y = 10; 
     r.objects[0].width = 20; 
     r.objects[0].height = 20;
+}
+
+ void MockVisionDriver::fillOverflow(VisionResult &r) {
+    
+    r.detected = true;
+    r.count = TRINOVA_MAX_OBJECTS;  
+
+    for (uint8_t i = 0; i < TRINOVA_MAX_OBJECTS; i++) {
+        r.objects[i].classId = i;
+        strncpy(r.objects[i].label, "object", sizeof(r.objects[i].label));
+        r.objects[i].confidence = 70;
+        r.objects[i].x = i * 10;
+        r.objects[i].y = 0;
+        r.objects[i].width = 10;
+        r.objects[i].height = 10;
+    }
 }

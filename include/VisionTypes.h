@@ -38,3 +38,9 @@ struct VisionResult {
     uint32_t    inferenceMs;
     uint32_t    postprocessMs;
 };
+
+
+struct VisionStats {
+    uint32_t totalReads;
+    uint8_t  consecutiveErrors;
+};

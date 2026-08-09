@@ -2,8 +2,9 @@
 #include "VisionTypes.h"
 #include "IVisionDriver.h"
 #include "MockVisionDriver.h"
+#ifdef ARDUINO
 #include "SscmaI2CDriver.h"
-
+#endif
 class TrinovaVision {
 public:
     TrinovaVision();
@@ -16,6 +17,7 @@ public:
     TrinovaError lastError();
     bool reset();
     void setMockScenario(MockScenario scenario);
+    VisionStats getStats();
 
 private:
     IVisionDriver* _driver;

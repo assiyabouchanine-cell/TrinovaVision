@@ -8,7 +8,9 @@ enum class MockScenario {
     MultipleObjects,
     LowConfidence,
     Disconnected,
-    Timeout
+    Timeout,
+    Overflow
+
 };
 
 class MockVisionDriver : public IVisionDriver {
@@ -31,4 +33,7 @@ private:
     void fillNoDetection(VisionResult &r);
     void fillMultipleObjects(VisionResult &r);
     void fillLowConfidence(VisionResult &r);
+
+
+    void fillOverflow(VisionResult &r);
 };  
