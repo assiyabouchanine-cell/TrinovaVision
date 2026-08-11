@@ -31,11 +31,11 @@ git clone https://github.com/assiyabouchanine-cell/TrinovaVision.git
 Mode I2C (par defaut) :
 
 | Grove Vision AI V2 | ESP32-S3 |
-|---|---|
-| VCC | 3V3 |
-| GND | GND |
-| SDA | SDA |
-| SCL | SCL |
+
+| VCC                |  3V3     |
+| GND                |  GND     |
+| SDA                |  SDA     |
+| SCL                |  SCL     |
 
 Mode UART (alternatif) : cf. `examples/04_ReadUART`.
 
@@ -48,6 +48,9 @@ Pour flasher sur la carte :
 
 pio run -e esp32-s3-devkitm-1 -t upload -t monitor
 
+Si la commande pio n'est pas reconnue dans le terminal (Windows) :
+  Utiliser le chemin complet vers PlatformIO :
+& $env:USERPROFILE\.platformio\penv\Scripts\platformio.exe run -e esp32-s3-devkitm-1
 
 ## API
 
@@ -57,7 +60,7 @@ pio run -e esp32-s3-devkitm-1 -t upload -t monitor
 TrinovaVision vision;
 
 vision.begin(VisionMode::Mock);   // ou VisionMode::I2C / VisionMode::UART
-vision.setConfidence(80);          // seuil de confiance, 0-100
+vision.setConfidence(80);          
 
 VisionResult result = vision.read();
 if (result.detected) {
@@ -67,26 +70,29 @@ if (result.detected) {
 vision.isConnected();
 vision.lastError();
 vision.reset();
-vision.getStats();                 // statistiques (lectures totales, erreurs)
+vision.getStats();                 
 ```
 
 Voir `include/VisionTypes.h` pour le detail des structures `VisionObject` et `VisionResult`.
 
 ## Exemples
 
-| Dossier | Description |
-|---|---|
-| `examples/01_ReadMock` | Lecture simple en mode simulation |
-| `examples/02_ReadI2C` | Lecture reelle via I2C |
-| `examples/03_AllObjects` | Affichage de plusieurs objets detectes |
-| `examples/04_ReadUART` | Lecture reelle via UART |
-| `examples/04_ValidationSemaine7` | Script de validation materielle complet |
+
+`examples/01_ReadMock` : Lecture simple en mode simulation 
+`examples/02_ReadI2C` : Lecture reelle via I2C 
+`examples/03_AllObjects` :Affichage de plusieurs objets detectes 
+`examples/04_ReadUART` : Lecture reelle via UART 
+`examples/04_ValidationSemaine7`:Script de validation materielle complet 
 
 ## Tests
 
 7 scenarios de simulation + 2 tests de robustesse, executables sans materiel :
 
 pio test -e native
+
+  Si la commande pio n'est pas reconnue dans le terminal (Windows) :
+
+& $env:USERPROFILE\.platformio\penv\Scripts\platformio.exe test -e native
 
 
 ## Limites connues
@@ -99,8 +105,9 @@ pio test -e native
 
 ## Depannage
 
-| Probleme | Solution |
-|---|---|
-| `pio` non reconnu dans le terminal | Utiliser le panneau PlatformIO (icone alien) ou le chemin complet vers `platformio.exe` |
-| Echec de connexion I2C | Verifier le cablage SDA/SCL et l'alimentation 3V3 |
-| Erreur de port lors de l'upload | Verifier le cable USB et le port COM detecte |
+ Probleme : `pio` non reconnu dans le terminal 
+      Solution: Utiliser le panneau Platfo(iconAlien)ou le chemin complet vers `platformio.exe` 
+Probleme:  Echec de connexion I2C 
+      Solution: Verifier le cablage SDA/SCL et l'alimentation 3V3 
+Probleme: Erreur de port lors de l'upload
+      Solution: Verifier le cable USB et le port COM detecte 
